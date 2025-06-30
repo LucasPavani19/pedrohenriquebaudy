@@ -285,6 +285,8 @@
             position: relative;
             max-width: 400px;
             margin-left: auto;
+            opacity: 0; /* ADICIONE ESTA LINHA */
+            animation: zoomIn 0.8s ease 0.7s forwards; /* ADICIONE ESTA LINHA */
         }
 
         .hero-image img {
@@ -401,6 +403,16 @@
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateX(-50%) translateY(20px); }
             to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         /* General Section Styling */
@@ -823,6 +835,7 @@
             .service-card, .testimonial, .about-me-content { padding: 2rem 1.5rem; }
             .floating-nav { display: none; }
         }
+        
     </style>
 </head>
 <body>
