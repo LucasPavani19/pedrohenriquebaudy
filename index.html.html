@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Henrique Baudy - Especialista em Tráfego Pago Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00d4ff;
+            --secondary-color: #0099cc;
+            --accent-color: #ff6b35;
+            --text-dark: #ffffff;
+            --text-light: #b0b0b0;
+            --text-muted: #888888;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            --gradient-bg: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-bg);
+            z-index: -2;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 107, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(0, 153, 204, 0.1) 0%, transparent 50%);
+            animation: backgroundPulse 30s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { 
+                background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%); 
+            }
+            25% { 
+                background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 50%, #0a0a0a 100%); 
+            }
+            50% { 
+                background: linear-gradient(135deg, #0f0f0f 0%, #0a0a0a 50%, #1a1a1a 100%); 
+            }
+            75% { 
+                background: linear-gradient(135deg, #0a0a0a 0%, #0f0f0f 50%, #1a1a1a 100%); 
+            }
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Floating Navigation */
+        .floating-nav {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            opacity: 0;
+            animation: fadeInRight 1s ease 2s forwards;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-dot::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--bg-card);
+            color: var(--text-dark);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+        }
+
+        .nav-dot:hover::before {
+            opacity: 1;
+            transform: translateY(-50%) translateX(-5px);
+        }
+
+        .nav-dot.active {
+            background: var(--primary-color);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .nav-dot:hover {
+            background: var(--primary-color);
+            transform: scale(1.3);
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateY(-50%) translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(-50%) translateX(0);
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--text-dark);
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.3s forwards;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.6s forwards;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .hero-highlight {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideUp 1s ease 0.9s forwards;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 16px 32px;
+            background: var(--gradient-primary);
+            color: var(--bg-primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
+            box-shadow: none;
+        }
+
+        .cta-secondary:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .hero-image {
+            position: relative;
+            max-width: 400px;
+            margin-left: auto;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 30px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: var(--gradient-primary);
+            border-radius: 33px;
+            z-index: 1;
+            animation: borderGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            0% {
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 30px rgba(0, 212, 255, 0.8), 0 0 60px rgba(0, 212, 255, 0.5);
+            }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary-color);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { width: 4px; height: 4px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 6px; height: 6px; top: 60%; right: 10%; animation-delay: 5s; }
+        .particle:nth-child(3) { width: 3px; height: 3px; bottom: 30%; left: 70%; animation-delay: 10s; }
+        .particle:nth-child(4) { width: 5px; height: 5px; top: 40%; right: 30%; animation-delay: 15s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-30px) translateX(20px); }
+            50% { transform: translateY(15px) translateX(-15px); }
+            75% { transform: translateY(-20px) translateX(-30px); }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 2s forwards;
+            cursor: pointer;
+            z-index: 3;
+        }
+
+        .scroll-text {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .scroll-arrow {
+            width: 2px;
+            height: 30px;
+            background: var(--gradient-primary);
+            border-radius: 1px;
+            position: relative;
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        .scroll-arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: -3px;
+            width: 8px;
+            height: 8px;
+            border-right: 2px solid var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            transform: rotate(45deg);
+        }
+
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(10px); }
+            60% { transform: translateY(5px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* General Section Styling */
+        .section-title {
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-primary);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--primary-color), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            animation: rotate 3s linear infinite;
+        }
+
+        .stat-item:hover::before { opacity: 0.1; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .stat-number {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 500;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* About Me Section ("Por que eu?") */
+        .about-me {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+        }
+
+        .about-me-content {
+            max-width: 800px;
+            margin: 4rem auto 0 auto;
+            background: var(--bg-card);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .about-me-text h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .about-me-text p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-me-content .cta-button {
+            margin-top: 1.5rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2.5rem;
+            border-radius: 20px;
+            text-align: left;
+            transition: all 0.4s ease;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::before { left: 100%; }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 6rem 0;
+            background: var(--bg-primary);
+        }
+
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .testimonial {
+            padding: 3rem;
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem 0;
+            position: relative;
+            border: 1px solid var(--border-color);
+            display: none;
+        }
+
+        .testimonial.active { display: block; }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            font-size: 4rem;
+            color: var(--primary-color);
+            font-family: 'Poppins', serif;
+            font-weight: 700;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 16px 28px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .contact-btn:hover::before { left: 0; }
+
+        .contact-btn:hover {
+            color: var(--bg-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .contact-btn.primary {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: var(--bg-primary);
+        }
+
+        .contact-btn.primary::before {
+            background: linear-gradient(135deg, #0099cc 0%, #00d4ff 100%);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .floating-nav { right: 15px; gap: 12px; }
+            .nav-dot { width: 10px; height: 10px; }
+            .nav-dot::before { display: none; }
+
+            .hero {
+                 padding-top: 5rem;
+                 min-height: auto;
+                 padding-bottom: 5rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+            
+            .hero-content {
+                 /* No specific order needed, default flow is correct */
+            }
+
+            .hero-image {
+                /* REMOVED order: -1; */
+                max-width: 280px;
+                margin: 2.5rem auto 0 auto; /* ADDED margin-top for spacing */
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .services-grid, .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card { text-align: center; padding: 2rem 1.5rem; }
+            .contact-buttons { flex-direction: column; align-items: center; }
+            .contact-btn { width: 100%; max-width: 280px; justify-content: center; }
+            .stat-item { padding: 2rem 1.5rem; }
+            .container { padding: 0 15px; }
+            .scroll-indicator { bottom: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .service-card, .testimonial, .about-me-content { padding: 2rem 1.5rem; }
+            .floating-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <nav class="floating-nav">
+        <div class="nav-dot active" data-tooltip="Sobre" data-target="sobre"></div>
+        <div class="nav-dot" data-tooltip="Resultados" data-target="resultados"></div>
+        <div class="nav-dot" data-tooltip="Por que Eu?" data-target="porque-eu"></div>
+        <div class="nav-dot" data-tooltip="Metodologia" data-target="metodologia"></div>
+        <div class="nav-dot" data-tooltip="Depoimentos" data-target="depoimentos"></div>
+        <div class="nav-dot" data-tooltip="Contato" data-target="contato"></div>
+    </nav>
+
+    <section id="sobre" class="hero">
+        <div class="particles">
+            <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        </div>
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Olá, eu sou <span class="hero-highlight">Pedro Henrique</span></h1>
+                    <p class="hero-subtitle">Especialista em tráfego pago com foco em resultados reais. Ajudo empresários como você a transformar investimento em publicidade digital em vendas e leads qualificados.</p>
+                    <div class="cta-buttons">
+                        <a href="#contato" class="cta-button">
+                            <i class="fas fa-rocket"></i>
+                            Quero Acelerar Meu Negócio
+                        </a>
+                        <a href="#metodologia" class="cta-button cta-secondary">
+                            <i class="fas fa-arrow-down"></i>
+                            Descobrir Como
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://abbatech.com.br/uploads/Imagem_do_WhatsApp_de_2025-06-30____s__13_13_18_2e3a2087_6862bc26ba077692361287.jpg" alt="Pedro Henrique Baudy - Especialista em Tráfego Pago">
+                </div>
+            </div>
+            <div class="scroll-indicator" onclick="scrollToSection('resultados')">
+                <span class="scroll-text">Role para descobrir</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resultados" class="stats">
+        <div class="container">
+            <div class="stats-grid fade-in">
+                <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Empresas Atendidas</div></div>
+                <div class="stat-item"><div class="stat-number">300%</div><div class="stat-label">Aumento Médio no ROI</div></div>
+                <div class="stat-item"><div class="stat-number">30</div><div class="stat-label">Dias para Primeiros Resultados</div></div>
+                <div class="stat-item"><div class="stat-number">2M+</div><div class="stat-label">Em Vendas Geradas</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="porque-eu" class="about-me">
+        <div class="container">
+            <h2 class="section-title fade-in">Por que me escolher?</h2>
+            <p class="section-subtitle fade-in">Além dos números, meu compromisso é com o seu sucesso real.</p>
+            <div class="about-me-content fade-in">
+                <div class="about-me-text">
+                    <h3>Uma Parceria Dedicada ao Seu Crescimento</h3>
+                    <p>Eu não trato meus clientes como apenas mais um número em uma planilha. Mergulho de cabeça em cada projeto, buscando entender as particularidades do seu negócio para construir uma estratégia que gere não apenas cliques, mas resultados financeiros concretos.</p>
+                    <p>Minha abordagem é de total transparência e colaboração. Você saberá exatamente para onde seu investimento está indo e quais resultados estamos alcançando juntos. Meu maior objetivo é construir uma parceria de longo prazo baseada em confiança e crescimento mútuo.</p>
+                    <a href="#contato" class="cta-button" onclick="scrollToSection('contato')">Vamos Iniciar essa Parceria</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodologia" class="services">
+        <div class="container">
+            <h2 class="section-title fade-in">Minha Metodologia</h2>
+            <p class="section-subtitle fade-in">Como eu trabalho para transformar seu investimento em resultados concretos.</p>
+            <div class="services-grid">
+                <div class="service-card fade-in"><i class="service-icon fas fa-search"></i><h3>Análise e Diagnóstico</h3><p>Faço uma análise completa do seu negócio, mercado e concorrência para identificar as melhores oportunidades de crescimento através do tráfego pago.</p></div>
+                <div class="service-card fade-in"><i class="service-icon fas fa-bullseye"></i><h3>Estratégia Personalizada</h3><p>Desenvolvo estratégias customizadas para seu nicho específico, focando em atrair leads qualificados e maximizar o retorno sobre seu investimento.</p></div>
+                <div class="service-card fade-in"><i class="service-icon fas fa-rocket"></i><h3>Campanhas Otimizadas</h3><p>Crio e gerencio suas campanhas no Google Ads, Facebook Ads e outras plataformas, com foco total em performance e resultados mensuráveis.</p></div>
+                <div class="service-card fade-in"><i class="service-icon fas fa-chart-line"></i><h3>Monitoramento Contínuo</h3><p>Acompanho em tempo real todas as métricas importantes, fazendo otimizações constantes para garantir o melhor desempenho possível.</p></div>
+                <div class="service-card fade-in"><i class="service-icon fas fa-mobile-alt"></i><h3>Conversão Otimizada</h3><p>Direciono estrategicamente o tráfego para WhatsApp, landing pages e outros canais que facilitam a conversão em vendas reais.</p></div>
+                <div class="service-card fade-in"><i class="service-icon fas fa-chart-pie"></i><h3>Relatórios Transparentes</h3><p>Envio relatórios detalhados e transparentes mostrando exatamente como seu investimento está sendo aplicado e quais resultados está gerando.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="depoimentos" class="testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in">O Que Meus Clientes Dizem</h2>
+            <p class="section-subtitle fade-in">Resultados reais de empresários que confiaram no meu trabalho.</p>
+            <div class="testimonial-slider">
+                <div class="testimonial active fade-in"><p class="testimonial-text">Em 3 meses, aumentamos nossas vendas em 250%. O Pedro realmente entende de tráfego pago e sabe como gerar resultados consistentes para nosso negócio.</p><p class="testimonial-author">- Maria Silva, E-commerce de Moda</p></div>
+                <div class="testimonial fade-in"><p class="testimonial-text">Nosso WhatsApp não para de receber leads qualificados. O investimento em tráfego pago com o Pedro foi a melhor decisão que tomamos.</p><p class="testimonial-author">- João Oliveira, Prestador de Serviços</p></div>
+                <div class="testimonial fade-in"><p class="testimonial-text">ROI de 400% em apenas 2 meses. Profissional extremamente competente e focado em resultados. Recomendo sem hesitar.</p><p class="testimonial-author">- Ana Costa, Consultoria Empresarial</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contact">
+        <div class="container">
+            <div class="contact-content fade-in">
+                <h2>Vamos Conversar sobre seu Negócio?</h2>
+                <p>Entre em contato comigo e vamos discutir como posso ajudar você a transformar investimento em publicidade digital em resultados reais e sustentáveis.</p>
+                <div class="contact-buttons">
+                    <a href="https://wa.me/5548999999999?text=Olá Pedro Henrique, vi seu site e gostaria de conversar sobre tráfego pago para meu negócio" target="_blank" class="contact-btn primary"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="mailto:pedro@email.com" class="contact-btn"><i class="fas fa-envelope"></i> E-mail</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Pedro Henrique Baudy - Especialista em Tráfego Pago Digital. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Floating navigation functionality
+            const navDots = document.querySelectorAll('.nav-dot');
+            const sections = document.querySelectorAll('section');
+
+            const updateActiveNav = () => {
+                const scrollPos = window.scrollY + window.innerHeight / 2;
+                sections.forEach(section => {
+                    if (scrollPos >= section.offsetTop && scrollPos < section.offsetTop + section.offsetHeight) {
+                        navDots.forEach(dot => {
+                            dot.classList.remove('active');
+                            if (dot.getAttribute('data-target') === section.id) {
+                                dot.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            };
+            
+            navDots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const targetId = dot.getAttribute('data-target');
+                    scrollToSection(targetId);
+                });
+            });
+
+            window.addEventListener('scroll', updateActiveNav);
+
+            // Scroll to section function
+            window.scrollToSection = (sectionId) => {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            };
+            
+            // Scroll animations on visibility
+            const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach((el, index) => {
+                el.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(el);
+            });
+            
+            // Counter animation for stats
+            const animateCounters = () => {
+                const counters = document.querySelectorAll('.stat-number');
+                counters.forEach(counter => {
+                    const targetText = counter.textContent;
+                    const suffix = targetText.replace(/[\d.]/g, '');
+                    const target = parseInt(targetText.replace(/[^\d.]/g, ''));
+                    
+                    if (isNaN(target)) return;
+                    
+                    let current = 0;
+                    const duration = 2000; // 2 seconds
+                    const stepTime = 16; // roughly 60fps
+                    const totalSteps = duration / stepTime;
+                    const increment = target / totalSteps;
+
+                    const updateCounter = () => {
+                        current += increment;
+                        if (current < target) {
+                            counter.textContent = Math.ceil(current) + suffix;
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = targetText;
+                        }
+                    };
+                    updateCounter();
+                });
+            };
+
+            const statsSection = document.querySelector('#resultados');
+            if (statsSection) {
+                 const statsObserver = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounters();
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                statsObserver.observe(statsSection);
+            }
+
+            // Testimonial auto-slider
+            const testimonials = document.querySelectorAll('.testimonial');
+            if (testimonials.length > 0) {
+                let currentTestimonial = 0;
+                const showNextTestimonial = () => {
+                    testimonials[currentTestimonial].classList.remove('active');
+                    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                    testimonials[currentTestimonial].classList.add('active');
+                };
+                testimonials[0].classList.add('active');
+                setInterval(showNextTestimonial, 7000); // Change every 7 seconds
+            }
+
+            // Hide scroll indicator on scroll
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (scrollIndicator) {
+                window.addEventListener('scroll', () => {
+                    scrollIndicator.style.opacity = (window.scrollY > 100) ? '0' : '1';
+                    scrollIndicator.style.pointerEvents = (window.scrollY > 100) ? 'none' : 'auto';
+                }, { passive: true });
+            }
+        });
+    </script>
+</body>
+</html>
